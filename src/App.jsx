@@ -3,11 +3,19 @@ import { useState } from "react";
 
 export default function App() {
   // ex LEGO VALUE AL VALORE NON MUTABILE DI STATE / UNCONTROLLED ELEMENT
-  const [newTitle, setNewTitle] = useState("Ciao");
+  const [newTitle, setNewTitle] = useState(" ");
+  // ex STATO PER LA GESTIONE DELL'ARRAY
+  const [title, setTitle] = useState(blogPosts);
 
   function handleFormSubmit(event) {
     // ex PREVIENE INVIO DATI
     event.preventDefault();
+    // ex DEEP COPY DELL'ARRAY + AGGIUNTA NUOVO ELEMENTO
+    const updatedTitles = [...title, newTitle];
+    // ex AGGIORNI L'ARRAY CONTENUTO IN TITLE
+    setTitle(updatedTitles);
+    // ex INSERISCI NUOVO TITOLO DA INPUT
+    title.push(newTitle);
   }
   return (
     <>
