@@ -8,6 +8,11 @@ export default function App() {
         {blogPosts.map(function (currentTitle, index) {
           return <h3 key={index}>{currentTitle}</h3>;
         })}
+        {/* FORM CON 1 INPUT */}
+        <form>
+          <input type="text" className="form-control mb-3"></input>
+          <button className="btn btn-primary">Add</button>
+        </form>
       </div>
     </>
   );
