@@ -7,25 +7,33 @@ export default function App() {
   // ex LEGO VALUE AL VALORE NON MUTABILE DI STATE / UNCONTROLLED ELEMENT
   const [newTitle, setNewTitle] = useState(" ");
   // ex STATO PER LA GESTIONE DELL'ARRAY
-  const [title, setTitle] = useState(blogPosts);
+  const [titles, setTitles] = useState(blogPosts);
 
   function handleFormSubmit(event) {
     // ex PREVIENE INVIO DATI
     event.preventDefault();
     // ex DEEP COPY DELL'ARRAY + AGGIUNTA NUOVO ELEMENTO
-    const updatedTitles = [...title, newTitle];
+    const updatedTitles = [...titles, newTitle];
     // ex AGGIORNI L'ARRAY CONTENUTO IN TITLE
-    setTitle(updatedTitles);
+    setTitles(updatedTitles);
     // ex INSERISCI NUOVO TITOLO DA INPUT
-    title.push(newTitle);
+    titles.push(newTitle);
     // ex L'INPUT SI SVUOTA DOPO OGNI INVIO
     setNewTitle(" ");
   }
+
+  function handleElimination(index) {
+    const notEliminatedTitles = titles.filter(function (currentTitle, i) {
+      return i !== index;
+    });
+    setTitles(notEliminatedTitles);
+  }
+
   return (
     <>
       <div className="container text-center my-3">
         {/* LISTA DI TITOLI */}
-        {title.map(function (currentTitle, index) {
+        {titles.map(function (currentTitle, index) {
           return (
             <h3 key={index}>
               {currentTitle}
@@ -33,6 +41,9 @@ export default function App() {
                 className="trash-icon"
                 key={index}
                 icon={faTrashCan}
+                onClick={function () {
+                  handleElimination(index);
+                }}
               />
             </h3>
           );
