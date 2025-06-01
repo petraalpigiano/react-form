@@ -20,8 +20,14 @@ export default function App() {
     // ex L'INPUT SI SVUOTA DOPO OGNI INVIO
     setNewTitle(" ");
   }
-  function handleModify(params) {
-    alert("modifcato");
+  function handleModify(index) {
+    const toModifyTitle = titles.filter(function (currentTitle, i) {
+      return i === index;
+    });
+    setNewTitle(toModifyTitle);
+  }
+  function submitModify() {
+    setTitles([...titles, newTitle]);
   }
   function handleElimination(index) {
     const notEliminatedTitles = titles.filter(function (currentTitle, i) {
@@ -46,7 +52,13 @@ export default function App() {
                   handleElimination(index);
                 }}
               />
-              <FontAwesomeIcon className="pen-icon" icon={faPen} />
+              <FontAwesomeIcon
+                className="pen-icon"
+                icon={faPen}
+                onClick={function () {
+                  handleModify(index);
+                }}
+              />
             </h3>
           );
         })}
@@ -66,7 +78,7 @@ export default function App() {
         <button className="btn btn-primary mx-1" onClick={handleAdd}>
           Add
         </button>
-        <button className="btn btn-primary mx-1" onClick={handleModify}>
+        <button className="btn btn-primary mx-1" onClick={submitModify}>
           Modify
         </button>
       </div>
