@@ -3,6 +3,8 @@ import { useState } from "react";
 import ReactDOM from "react-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTrashCan } from "@fortawesome/free-solid-svg-icons";
+import { faPen } from "@fortawesome/free-solid-svg-icons";
+
 export default function App() {
   // ex LEGO VALUE AL VALORE NON MUTABILE DI STATE / UNCONTROLLED ELEMENT
   const [newTitle, setNewTitle] = useState(" ");
@@ -18,14 +20,14 @@ export default function App() {
     // ex L'INPUT SI SVUOTA DOPO OGNI INVIO
     setNewTitle(" ");
   }
+  function handleModify(params) {
+    alert("modifcato");
+  }
   function handleElimination(index) {
     const notEliminatedTitles = titles.filter(function (currentTitle, i) {
       return i !== index;
     });
     setTitles(notEliminatedTitles);
-  }
-  function handleModify(params) {
-    alert("modifcato");
   }
 
   return (
@@ -44,6 +46,7 @@ export default function App() {
                   handleElimination(index);
                 }}
               />
+              <FontAwesomeIcon className="pen-icon" icon={faPen} />
             </h3>
           );
         })}
@@ -60,10 +63,10 @@ export default function App() {
           type="text"
           className="form-control mb-3"
         ></input>
-        <button className="btn btn-primary" onClick={handleAdd}>
+        <button className="btn btn-primary mx-1" onClick={handleAdd}>
           Add
         </button>
-        <button className="btn btn-primary" onClick={handleModify}>
+        <button className="btn btn-primary mx-1" onClick={handleModify}>
           Modify
         </button>
       </div>
