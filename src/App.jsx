@@ -23,12 +23,21 @@ export default function App() {
   }
   return (
     <>
-      <div className="container my-3">
+      <div className="container text-center my-3">
         {/* LISTA DI TITOLI */}
         {title.map(function (currentTitle, index) {
-          return <h3 key={index}>{currentTitle}</h3>;
+          return (
+            <h3 key={index}>
+              {currentTitle}
+              <FontAwesomeIcon
+                className="trash-icon"
+                key={index}
+                icon={faTrashCan}
+              />
+            </h3>
+          );
         })}
-        <FontAwesomeIcon icon={faTrashCan} />
+
         {/* FORM CON 1 INPUT */}
         <form onSubmit={handleFormSubmit}>
           <input
