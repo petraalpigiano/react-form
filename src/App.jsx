@@ -9,10 +9,7 @@ export default function App() {
   // ex STATO PER LA GESTIONE DELL'ARRAY
   const [titles, setTitles] = useState(blogPosts);
 
-  function handleFormSubmit(event) {
-    // ex PREVIENE INVIO DATI
-    event.preventDefault();
-    // ex DEEP COPY DELL'ARRAY + AGGIUNTA NUOVO ELEMENTO
+  function handleAdd() {
     const updatedTitles = [...titles, newTitle];
     // ex AGGIORNI L'ARRAY CONTENUTO IN TITLE
     setTitles(updatedTitles);
@@ -21,12 +18,14 @@ export default function App() {
     // ex L'INPUT SI SVUOTA DOPO OGNI INVIO
     setNewTitle(" ");
   }
-
   function handleElimination(index) {
     const notEliminatedTitles = titles.filter(function (currentTitle, i) {
       return i !== index;
     });
     setTitles(notEliminatedTitles);
+  }
+  function handleModify(params) {
+    alert("modifcato");
   }
 
   return (
@@ -50,20 +49,23 @@ export default function App() {
         })}
 
         {/* FORM CON 1 INPUT */}
-        <form onSubmit={handleFormSubmit}>
-          <input
-            // TRASFORMIAMO IN UN CONTROLLED EVENT
-            // ex INTERCETTA EVENTO E RACCOGLIE INPUT
-            onChange={function (event) {
-              // ex RIASSEGNA IL VALORE DI NEWTITLE CON L'INPUT
-              setNewTitle(event.target.value);
-            }}
-            value={newTitle}
-            type="text"
-            className="form-control mb-3"
-          ></input>
-          <button className="btn btn-primary">Add</button>
-        </form>
+        <input
+          // TRASFORMIAMO IN UN CONTROLLED EVENT
+          // ex INTERCETTA EVENTO E RACCOGLIE INPUT
+          onChange={function (event) {
+            // ex RIASSEGNA IL VALORE DI NEWTITLE CON L'INPUT
+            setNewTitle(event.target.value);
+          }}
+          value={newTitle}
+          type="text"
+          className="form-control mb-3"
+        ></input>
+        <button className="btn btn-primary" onClick={handleAdd}>
+          Add
+        </button>
+        <button className="btn btn-primary" onClick={handleModify}>
+          Modify
+        </button>
       </div>
     </>
   );
