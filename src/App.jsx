@@ -16,12 +16,14 @@ export default function App() {
     setTitle(updatedTitles);
     // ex INSERISCI NUOVO TITOLO DA INPUT
     title.push(newTitle);
+    // ex L'INPUT SI SVUOTA DOPO OGNI INVIO
+    setNewTitle(" ");
   }
   return (
     <>
       <div className="container text-center my-3">
         {/* LISTA DI TITOLI */}
-        {blogPosts.map(function (currentTitle, index) {
+        {title.map(function (currentTitle, index) {
           return <h3 key={index}>{currentTitle}</h3>;
         })}
         {/* FORM CON 1 INPUT */}
@@ -37,6 +39,7 @@ export default function App() {
             type="text"
             className="form-control mb-3"
           ></input>
+
           <button className="btn btn-primary">Add</button>
         </form>
       </div>
