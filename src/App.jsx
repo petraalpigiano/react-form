@@ -1,6 +1,8 @@
 import blogPosts from "./data/blogPosts.js";
 import { useState } from "react";
-
+import ReactDOM from "react-dom";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faTrashCan } from "@fortawesome/free-solid-svg-icons";
 export default function App() {
   // ex LEGO VALUE AL VALORE NON MUTABILE DI STATE / UNCONTROLLED ELEMENT
   const [newTitle, setNewTitle] = useState(" ");
@@ -21,11 +23,12 @@ export default function App() {
   }
   return (
     <>
-      <div className="container text-center my-3">
+      <div className="container my-3">
         {/* LISTA DI TITOLI */}
         {title.map(function (currentTitle, index) {
           return <h3 key={index}>{currentTitle}</h3>;
         })}
+        <FontAwesomeIcon icon={faTrashCan} />
         {/* FORM CON 1 INPUT */}
         <form onSubmit={handleFormSubmit}>
           <input
@@ -39,7 +42,6 @@ export default function App() {
             type="text"
             className="form-control mb-3"
           ></input>
-
           <button className="btn btn-primary">Add</button>
         </form>
       </div>
